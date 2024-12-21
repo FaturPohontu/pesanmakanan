@@ -8,22 +8,26 @@
     <link rel="stylesheet" href="/project/styles.css">
 </head>
 <body>
-<?php
+<!-- <?php
 $page = isset($_GET['page']) ? $_GET['page'] : 'home';
-?>
+?> -->
 
-<?php include 'includes/header.php'; ?>
+<?php include "register.php"; ?>
 <main class="container mt-4">
     <?php
     // Allowed pages
-    $allowed_pages = ['home', 'about', 'register'];
+    $allowed_pages = ['home', 'about',];
     if (in_array($page, $allowed_pages)) {
-        include "pages/{$page}.php";
+        include $page;
     } else {
         echo "<h1>404 - Page Not Found</h1>";
     }
     ?>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<!-- includes/footer.php -->
+<footer>
+        <p>&copy; 2024 My Website</p>
+    </footer>
 </body>
 </html>
