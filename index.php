@@ -13,7 +13,7 @@
     <?php
     $page = isset($_GET['page']) ? $_GET['page'] : 'home.php';
     ?>
-
+    <?php include 'header.php'; ?>
     <main class="container mt-4">
         <?php
         // Allowed pages
