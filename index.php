@@ -17,7 +17,7 @@
     <main class="container mt-4">
         <?php
         // Allowed pages
-        $allowed_pages = ['home.php', 'about.php',];
+        $allowed_pages = ['home.php', 'about.php', 'register.php'];
         if (in_array($page, $allowed_pages)) {
             include $page;
         } else {
