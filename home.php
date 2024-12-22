@@ -1,4 +1,7 @@
-<div class="home-content">
-        <h1>Welcome to the Home Page</h1>
-        <p>This is the homepage of our website. Use the navigation bar to explore more.</p>
+<div class="text-center">
+        <h1>Selamat Memesan</h1>
+        <p>Rasakan kenikmatan dalam setiap suapan dengan rice bowl spesial kami! 
+        Dihadirkan dengan pilihan topping lezat yang menggugah selera, rice bowl 
+        kami dibuat dengan bahan-bahan segar dan berkualitas. unggu apa lagi? Segera 
+        pesan sekarang dan nikmati sensasi makan yang penuh cita rasa!</p>
 </div>
