@@ -15,11 +15,12 @@
     <?php
     $page = isset($_GET['page']) ? $_GET['page'] : 'home.php';
     ?>
-    <?php include 'header.php'; ?>
+    <?php include 'header.php';
+    ?>
     <div class="container mt-4">
         <?php
         // Allowed pages
-        $allowed_pages = ['home.php', 'about.php', 'register.php'];
+        $allowed_pages = ['home.php', 'beli.php', 'register.php'];
         if (in_array($page, $allowed_pages)) {
             include $page;
         } else {
@@ -29,7 +30,12 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- includes/footer.php -->
-    <footer class="fixed-bottom text-center">
+    <div class="text-center">
+        <h3>Tentang Kami</h3>
+        <p>Alamat Dll</p>
+    </div>
+    <br>
+    <footer class="fixed-bottom text-center bg-light">
         <p>&copy; 2024 My Website</p>
     </footer>
 </body>
