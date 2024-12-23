@@ -7,7 +7,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <?php 
+                    <?php
                     // Pastikan session dimulai
                     if (isset($_SESSION['username'])): ?>
                         <li class="nav-item dropdown">
@@ -15,7 +15,7 @@
                                 <?= htmlspecialchars($_SESSION['username']); ?>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" href="?page=proses/proses_keluar.php">Logout</a></li>
+                                <li><a class="dropdown-item" href="proses/proses_keluar.php">Logout</a></li>
                             </ul>
                         </li>
                     <?php else: ?>
