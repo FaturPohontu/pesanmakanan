@@ -1,5 +1,6 @@
-<?php session_start();
-?> 
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +21,7 @@
     <div class="container mt-4">
         <?php
         // Allowed pages
-        $allowed_pages = ['home.php', 'beli.php', 'register.php'];
+        $allowed_pages = ['home.php', 'beli.php', 'register.php', 'login.php', 'proses/proses_keluar.php'];
         if (in_array($page, $allowed_pages)) {
             include $page;
         } else {
