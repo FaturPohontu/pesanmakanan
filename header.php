@@ -15,6 +15,7 @@
                                 <?= htmlspecialchars($_SESSION['username']); ?>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="index.php?page=riwayat.php">Riwayat</a></li>
                                 <li><a class="dropdown-item" href="proses/proses_keluar.php">Logout</a></li>
                             </ul>
                         </li>

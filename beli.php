@@ -8,7 +8,7 @@ if (isset($_GET['id'])) {
     $id_barang = $_GET['id'];
 
     if ($conn) {
-        $query = "SELECT * FROM  tb_barang WHERE id = $id_barang";
+        $query = "SELECT * FROM  tb_barang WHERE id_brg = $id_barang";
         $result = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($result) > 0) {
@@ -33,8 +33,8 @@ if (isset($_GET['id'])) {
         <div class="col-md-6">
             <h2 class="text-primary mb-3">Harga: Rp<?php echo number_format($barang['harga'], 0, ',', '.'); ?></h2>
             <p class="text-secondary"><?php echo $barang['Deskripsi']; ?></p>
-            <form action="" method="POST" class="mt-4">
-                <input type="hidden" name="id_barang" value="<?php echo $barang['id']; ?>">
+            <form action="proses/proses_checkout.php" method="POST" class="mt-4">
+                <input type="hidden" name="id_barang" value="<?php echo $barang['id_brg']; ?>">
                 <input type="hidden" name="nama" value="<?php echo $barang['nama']; ?>">
                 <input type="hidden" name="harga" value="<?php echo $barang['harga']; ?>">
                 <div class="mb-3">
