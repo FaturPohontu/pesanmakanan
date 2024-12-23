@@ -35,19 +35,9 @@ session_start();
         ?>
     </div>
     <br>
-    <a href="index.php?page=riwayat.php" class="btn btn-info d-flex justify-content-center">Lihat Riwayat Transaksi</a>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- includes/footer.php -->
-    <section class="bg-light">
-    <br>
-    <div class="text-center">
-        <h3>Tentang Kami</h3>
-        <p>Jl. Nani Wartabone</p>
-        <p>089601585460</p>
-    </div>
-    <br>
-    </section>
-    <br>
     <footer class="fixed-bottom text-center bg-light">
         <p>&copy; 2024 My Website</p>
     </footer>

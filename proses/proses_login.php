@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     // Validasi input
     if (empty($username) || empty($password)) {
         $_SESSION['alert'] = "danger | Username dan Password tidak boleh kosong";
-        header("Location: ../login.php"); // Kembali ke halaman login
+        header('location:../?page=login.php'); // Kembali ke halaman login
         exit();
     }
 
@@ -30,8 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
             $_SESSION['user_id'] = $row['id']; // Simpan ID admin
             $_SESSION['role'] = $row['role']; // Simpan peran admin
 
-            // Arahkan ke halaman dashboard admin
-            header("Location: ../d_admin.php"); // Halaman dashboard admin
+            // Arahkan ke halaman dashboard admin 
+            header("Location: ../?page=d_admin.php"); // Halaman dashboard admin
             exit();
         } else {
             $_SESSION['alert'] = "danger | Password Salah untuk Admin";
@@ -79,4 +79,3 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     header("Location: ../login.php"); // Kembali ke halaman login jika gagal
     exit();
 }
-?>
