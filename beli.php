@@ -1,27 +1,26 @@
-<?php 
+<?php
 if (!isset($_SESSION)) {
-        session_start();
-    }
-    
-include ("proses/koneksi.php");
-if (isset($_GET['id'])){
-        $id_barang = $_GET['id'];
-        
-        if ($conn) {
+    session_start();
+}
+
+include("proses/koneksi.php");
+if (isset($_GET['id'])) {
+    $id_barang = $_GET['id'];
+
+    if ($conn) {
         $query = "SELECT * FROM  tb_barang WHERE id = $id_barang";
         $result = mysqli_query($conn, $query);
 
-        if(mysqli_num_rows($result) > 0) {
-                $barang = mysqli_fetch_assoc($result);
+        if (mysqli_num_rows($result) > 0) {
+            $barang = mysqli_fetch_assoc($result);
         } else {
-                die ("Barang Tidak Ditemukan");
-        } 
-
-        } else {
-                die("Koneksi Database Gagal");
-        }  
+            die("Barang Tidak Ditemukan");
+        }
+    } else {
+        die("Koneksi Database Gagal");
+    }
 } else {
-        die ("ID barang tidak berikan");
+    die("ID barang tidak berikan");
 }
 ?>
 

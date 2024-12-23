@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 ?>
 <!DOCTYPE html>
@@ -22,6 +22,11 @@ session_start();
         <?php
         // Allowed pages
         $allowed_pages = ['home.php', 'beli.php', 'register.php', 'login.php', 'proses/proses_keluar.php'];
+
+        // Get the page name and sanitize
+        $page = isset($_GET['page']) ? basename($_GET['page']) : 'home.php';
+
+        // Check if the page is allowed
         if (in_array($page, $allowed_pages)) {
             include $page;
         } else {
