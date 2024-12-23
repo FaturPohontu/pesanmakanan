@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2024 at 08:57 AM
+-- Generation Time: Dec 23, 2024 at 09:41 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,6 +24,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `db_admin`
+--
+
+CREATE TABLE `db_admin` (
+  `id_adm` int(11) NOT NULL,
+  `useradmin` varchar(100) NOT NULL,
+  `passwd` varchar(100) NOT NULL,
+  `role` enum('admin','user') NOT NULL DEFAULT 'admin'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `db_admin`
+--
+
+INSERT INTO `db_admin` (`id_adm`, `useradmin`, `passwd`, `role`) VALUES
+(1, 'ArilTEkobang23', 'EKBANGArilTrumpi23', 'admin');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `db_cust`
 --
 
@@ -40,7 +60,8 @@ CREATE TABLE `db_cust` (
 --
 
 INSERT INTO `db_cust` (`id`, `nama`, `telp`, `email`, `pass`) VALUES
-(7, 'Fatur', '123', 'faturpohontu954@gmail.com', '$2y$10$O3IQfEE9NyBsgRvwVh9zXOl8T9Jv1ALw0n7dU5a5TfiotYbOE9fMa');
+(7, 'Fatur', '123', 'faturpohontu954@gmail.com', '$2y$10$O3IQfEE9NyBsgRvwVh9zXOl8T9Jv1ALw0n7dU5a5TfiotYbOE9fMa'),
+(8, 'Yulia', '081523657895', 'syakiralhasni77@gmail.com', '$2y$10$TVGrBZHTIOwVkJyOmY8iAep2pR78vMa9/h0/7/sjhbVL/OeLOUA2K');
 
 -- --------------------------------------------------------
 
@@ -49,7 +70,7 @@ INSERT INTO `db_cust` (`id`, `nama`, `telp`, `email`, `pass`) VALUES
 --
 
 CREATE TABLE `tb_barang` (
-  `id` int(11) NOT NULL,
+  `id_brg` int(11) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `harga` int(100) NOT NULL,
   `Deskripsi` text NOT NULL,
@@ -60,10 +81,10 @@ CREATE TABLE `tb_barang` (
 -- Dumping data for table `tb_barang`
 --
 
-INSERT INTO `tb_barang` (`id`, `nama`, `harga`, `Deskripsi`, `gambar`) VALUES
-(1, 'Rice Bowl Nuget', 15000, 'Makanan Paling enak sedunia', 'rb.jpeg'),
-(2, 'Rice Bowl tempe', 10000, 'Makanan Paling enak', 'rbb.jpeg'),
-(3, 'Rice Bowl Telur', 12000, 'Makanan Paling enak', 'rb.jpeg');
+INSERT INTO `tb_barang` (`id_brg`, `nama`, `harga`, `Deskripsi`, `gambar`) VALUES
+(1, 'Rice Bowl Mie Nuget', 10000, 'Makanan Paling enak sedunia', 'rb.jpeg'),
+(2, 'Rice Bowl Ayam Kecap', 10000, 'Makanan Paling enak', 'rbb.jpeg'),
+(3, 'Rice Bowl Mie Telur', 10000, 'Makanan Paling enak', 'rb.jpeg');
 
 -- --------------------------------------------------------
 
@@ -74,14 +95,28 @@ INSERT INTO `tb_barang` (`id`, `nama`, `harga`, `Deskripsi`, `gambar`) VALUES
 CREATE TABLE `transaksi` (
   `id_trx` int(11) NOT NULL,
   `barang` int(11) NOT NULL,
+  `customer` int(11) DEFAULT NULL,
   `jumlah` int(3) NOT NULL,
   `total` int(11) NOT NULL,
   `tanggal` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`id_trx`, `barang`, `customer`, `jumlah`, `total`, `tanggal`) VALUES
+(17, 1, NULL, 2, 20000, '2024-12-23 21:32:40');
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `db_admin`
+--
+ALTER TABLE `db_admin`
+  ADD PRIMARY KEY (`id_adm`);
 
 --
 -- Indexes for table `db_cust`
@@ -93,36 +128,43 @@ ALTER TABLE `db_cust`
 -- Indexes for table `tb_barang`
 --
 ALTER TABLE `tb_barang`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_brg`);
 
 --
 -- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id_trx`),
-  ADD KEY `barang` (`barang`);
+  ADD KEY `transaksi_ibfk_2` (`customer`),
+  ADD KEY `transaksi_ibfk_1` (`barang`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `db_admin`
+--
+ALTER TABLE `db_admin`
+  MODIFY `id_adm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `db_cust`
 --
 ALTER TABLE `db_cust`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tb_barang`
 --
 ALTER TABLE `tb_barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_brg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_trx` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_trx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
@@ -132,7 +174,8 @@ ALTER TABLE `transaksi`
 -- Constraints for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`barang`) REFERENCES `tb_barang` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`barang`) REFERENCES `tb_barang` (`id_brg`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`customer`) REFERENCES `db_cust` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
