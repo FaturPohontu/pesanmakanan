@@ -6,10 +6,18 @@ if (!isset($_SESSION)) {
 include("proses/koneksi.php");
 
 if ($conn) {
-    $query = "SELECT t.id_trx, b.nama AS barang, t.jumlah, t.total, t.tanggal 
-              FROM transaksi t
-              JOIN tb_barang b ON t.barang = b.id_brg
-              ORDER BY t.tanggal DESC";
+    $user_id = mysqli_real_escape_string($conn, $_SESSION['user_id']);
+    $query = "
+        SELECT 
+            t.id_trx, 
+            b.nama AS barang, 
+            t.jumlah, 
+            t.total, 
+            t.tanggal 
+        FROM transaksi t
+        JOIN tb_barang b ON t.barang = b.id_brg
+        WHERE t.customer = '$user_id'
+        ORDER BY t.tanggal DESC";
     $result = mysqli_query($conn, $query);
 } else {
     die("Koneksi Database Gagal");

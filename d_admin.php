@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 // Cek apakah user sudah login dan merupakan admin
 if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
