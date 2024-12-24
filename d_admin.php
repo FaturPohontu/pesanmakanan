@@ -1,6 +1,4 @@
 <?php
-
-// Cek apakah user sudah login dan merupakan admin
 if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
     header("Location: login.php"); // Jika bukan admin, arahkan ke login
     exit();
@@ -16,6 +14,32 @@ $query = "SELECT t.id_trx, b.nama AS barang, t.jumlah, t.total, t.tanggal, t.sta
           JOIN db_cust c ON t.customer = c.id
           ORDER BY t.tanggal DESC";
 $result = mysqli_query($conn, $query);
+
+if (!$result) {
+    die("Error fetching data: " . mysqli_error($conn));
+}
+
+// Cek apakah ada parameter 'message' di URL
+if (isset($_GET['message'])) {
+    $message = $_GET['message'];
+
+    // Tentukan pesan yang akan ditampilkan berdasarkan nilai 'message'
+    $alert = '';
+    switch ($message) {
+        case 'success':
+            $alert = "<div class='alert alert-success'>Transaksi berhasil diperbarui!</div>";
+            break;
+        case 'error':
+            $alert = "<div class='alert alert-danger'>Terjadi kesalahan saat memperbarui transaksi.</div>";
+            break;
+        case 'invalid_request':
+            $alert = "<div class='alert alert-warning'>Permintaan tidak valid!</div>";
+            break;
+    }
+
+    // Tampilkan pesan jika ada
+    echo $alert;
+}
 
 // Cek apakah ada pesanan
 if (mysqli_num_rows($result) > 0):
@@ -41,20 +65,34 @@ if (mysqli_num_rows($result) > 0):
             <tbody>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                     <tr>
-                        <td><?php echo $row['id_trx']; ?></td>
-                        <td><?php echo $row['barang']; ?></td>
-                        <td><?php echo $row['jumlah']; ?></td>
+                        <td><?php echo htmlspecialchars($row['id_trx']); ?></td>
+                        <td><?php echo htmlspecialchars($row['barang']); ?></td>
+                        <td><?php echo htmlspecialchars($row['jumlah']); ?></td>
                         <td>Rp<?php echo number_format($row['total'], 0, ',', '.'); ?></td>
-                        <td><?php echo $row['tanggal']; ?></td>
-                        <td><?php echo $row['customer']; ?></td>
+                        <td><?php echo htmlspecialchars($row['tanggal']); ?></td>
+                        <td><?php echo htmlspecialchars($row['customer']); ?></td>
                         <td>
-                            <?php echo $row['status'] == 'selesai' ? '<span class="text-warning">Pending</span>' : '<span class="text-success">Completed</span>'; ?>
+                            <?php
+                            // Mapping status ke teks dan kelas CSS
+                            $statusMap = [
+                                'pending' => ['text' => 'Pending', 'class' => 'text-warning'],
+                                'diterima' => ['text' => 'Diterima', 'class' => 'text-primary'],
+                                'diantar' => ['text' => 'Diantar', 'class' => 'text-info'],
+                                'selesai' => ['text' => 'Selesai', 'class' => 'text-success'],
+                            ];
+                            $status = $row['status'];
+                            $statusText = $statusMap[$status]['text'] ?? 'Unknown';
+                            $statusClass = $statusMap[$status]['class'] ?? 'text-danger';
+                            ?>
+                            <span class="<?php echo $statusClass; ?>"><?php echo $statusText; ?></span>
                         </td>
                         <td>
                             <?php if ($row['status'] == 'pending'): ?>
-                                <a href="proses/proses_terima_pesanan.php?id=<?php echo $row['id_trx']; ?>" class="btn btn-success btn-sm">Terima</a>
+                                <a href="proses/proses_terima_pesanan.php?id=<?php echo urlencode($row['id_trx']); ?>" class="btn btn-success btn-sm">Terima</a>
                             <?php elseif ($row['status'] == 'diterima'): ?>
-                                <a href="proses/proses_antar.php?id=<?php echo $row['id_trx']; ?>" class="btn btn-primary btn-sm">Antar</a>
+                                <a href="proses/proses_antar.php?id=<?php echo urlencode($row['id_trx']); ?>" class="btn btn-primary btn-sm">Antar</a>
+                            <?php elseif ($row['status'] == 'diantar'): ?>
+                                <a href="proses/proses_selesai.php?id=<?php echo urlencode($row['id_trx']); ?>" class="btn btn-secondary btn-sm">Selesai</a>
                             <?php else: ?>
                                 <span class="text-muted">Selesai</span>
                             <?php endif; ?>
@@ -70,5 +108,6 @@ else:
     echo "<div class='alert alert-info text-center'>Tidak ada pesanan saat ini.</div>";
 endif;
 
+// Tutup koneksi
 mysqli_close($conn);
 ?>

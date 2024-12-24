@@ -21,7 +21,7 @@ session_start();
     <div class="container mt-4">
         <?php
         // Allowed pages
-        $allowed_pages = ['home.php', 'beli.php', 'register.php', 'login.php', 'proses/proses_keluar.php', 'riwayat.php', 'd_admin.php'];
+        $allowed_pages = ['home.php', 'beli.php', 'proses/proses_keluar.php', 'riwayat.php', 'd_admin.php'];
 
         // Get the page name and sanitize
         $page = isset($_GET['page']) ? basename($_GET['page']) : 'home.php';

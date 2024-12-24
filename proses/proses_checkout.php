@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($conn) {
         $query = "INSERT INTO transaksi (barang, jumlah, total, tanggal, customer, status) 
-                  VALUES ('$id_barang', '$jumlah', '$total', '$tanggal', $customer, $status)";
+                  VALUES ('$id_barang', '$jumlah', '$total', '$tanggal', $customer, '$status')";
         $result = mysqli_query($conn, $query);
 
         if ($result) {

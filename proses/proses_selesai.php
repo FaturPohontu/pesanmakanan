@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
     $id_trx = mysqli_real_escape_string($conn, $id_trx);
 
     // Update the order status to 'completed'
-    $query = "UPDATE transaksi SET status = 'diantar' WHERE id_trx = '$id_trx'";
+    $query = "UPDATE transaksi SET status = 'selesai' WHERE id_trx = '$id_trx'";
     $result = mysqli_query($conn, $query);
 
     // Check if the query was successful

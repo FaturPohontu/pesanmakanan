@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     // Validasi input
     if (empty($username) || empty($password)) {
         $_SESSION['alert'] = "danger | Username dan Password tidak boleh kosong";
-        header('location:../?page=login.php'); // Kembali ke halaman login
+        header('location:../login.php'); // Kembali ke halaman login
         exit();
     }
 

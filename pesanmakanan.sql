@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2024 at 09:41 PM
+-- Generation Time: Dec 24, 2024 at 01:30 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -61,7 +61,7 @@ CREATE TABLE `db_cust` (
 
 INSERT INTO `db_cust` (`id`, `nama`, `telp`, `email`, `pass`) VALUES
 (7, 'Fatur', '123', 'faturpohontu954@gmail.com', '$2y$10$O3IQfEE9NyBsgRvwVh9zXOl8T9Jv1ALw0n7dU5a5TfiotYbOE9fMa'),
-(8, 'Yulia', '081523657895', 'syakiralhasni77@gmail.com', '$2y$10$TVGrBZHTIOwVkJyOmY8iAep2pR78vMa9/h0/7/sjhbVL/OeLOUA2K');
+(9, 'syakir', '0812345678', 'syakiralhasni77@gmail.com', '$2y$10$qzqjYC.9OjUp./j70waDQejTUCJFrGpnb/W6XlkEyVU/imGmT35dC');
 
 -- --------------------------------------------------------
 
@@ -98,15 +98,17 @@ CREATE TABLE `transaksi` (
   `customer` int(11) DEFAULT NULL,
   `jumlah` int(3) NOT NULL,
   `total` int(11) NOT NULL,
-  `tanggal` datetime NOT NULL DEFAULT current_timestamp()
+  `tanggal` datetime NOT NULL DEFAULT current_timestamp(),
+  `status` enum('diterima','diantar','pending','selesai') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`id_trx`, `barang`, `customer`, `jumlah`, `total`, `tanggal`) VALUES
-(17, 1, NULL, 2, 20000, '2024-12-23 21:32:40');
+INSERT INTO `transaksi` (`id_trx`, `barang`, `customer`, `jumlah`, `total`, `tanggal`, `status`) VALUES
+(20, 1, 7, 2, 20000, '2024-12-24 00:32:34', 'selesai'),
+(22, 1, 9, 1, 10000, '2024-12-24 01:08:32', 'selesai');
 
 --
 -- Indexes for dumped tables
@@ -152,7 +154,7 @@ ALTER TABLE `db_admin`
 -- AUTO_INCREMENT for table `db_cust`
 --
 ALTER TABLE `db_cust`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tb_barang`
@@ -164,7 +166,7 @@ ALTER TABLE `tb_barang`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_trx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_trx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables

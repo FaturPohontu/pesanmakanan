@@ -14,18 +14,22 @@ if (isset($_GET['id'])) {
 
     // Update the order status to 'completed'
     $query = "UPDATE transaksi SET status = 'diterima' WHERE id_trx = '$id_trx'";
+    $result = mysqli_query($conn, $query);
 
-    // Execute the query
-    if (mysqli_query($conn, $query)) {
-        // Redirect back to the previous page with a success message
-        header('Location: ../index.php?message=success');
+    // Check if the query was successful
+    if ($result) {
+        // Redirect back to the same page with a success message
+        $redirect = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '../index.php';
+        header("Location: $redirect&message=success");
     } else {
-        // Redirect back to the previous page with an error message
-        header('Location: ../index.php?message=error');
+        // Redirect back with an error message
+        $redirect = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '../index.php';
+        header("Location: $redirect&message=error");
     }
 } else {
     // Redirect back if no 'id' parameter is provided
-    header('Location: ../index.php?message=invalid_request');
+    $redirect = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '../index.php';
+    header("Location: $redirect&message=invalid_request");
 }
 
 // Close the database connection

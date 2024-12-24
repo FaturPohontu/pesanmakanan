@@ -25,8 +25,8 @@
                                 Welcome, Guest
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="guestDropdown">
-                                <li><a class="dropdown-item" href="?page=login.php">Login</a></li>
-                                <li><a class="dropdown-item" href="?page=register.php">Daftar</a></li>
+                                <li><a class="dropdown-item" href="login.php">Login</a></li>
+                                <li><a class="dropdown-item" href="register.php">Daftar</a></li>
                             </ul>
                         </li>
                     <?php endif; ?>
