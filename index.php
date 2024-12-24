@@ -35,12 +35,28 @@ session_start();
         ?>
     </div>
     <br>
-
+    <section class="bg-light">
+    <br>
+    <div class="text-center">
+        <h3>Tentang Kami</h3>
+        <p>Start Up Kami bergerak di bidang UMKM penjualan makanan, diumkm kami menjual Tipe Makanan berat
+            yaitu rice bowl yang tersedia dengan 3 Varian Rasa yang dapat Anda pilih 
+        </p>
+    </div>
+    <br>
+</section>
+<section class="bg-light text-center">
+    <p>Jl. Nani Wartabone</p>
+    <p> Hubungi Kami : 
+        089601585460</p>
+</section>
+<br>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- includes/footer.php -->
     <footer class="fixed-bottom text-center bg-light">
-        <p>&copy; 2024 My Website</p>
+        <p>&copy; Copyright 2024 Bowl Crazy</p>
     </footer>
+    <br>
 </body>
 
 </html>

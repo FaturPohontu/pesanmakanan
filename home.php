@@ -1,3 +1,12 @@
+<?php
+// Jika pengguna belum login, redirect ke register.php
+if (!isset($_SESSION['username'])) {
+    $_SESSION['alert'] = "warning | Anda harus mendaftar atau login terlebih dahulu.";
+    header('Location: register.php');
+    exit();
+}
+?>
+
 <div class="text-center">
     <h1>Selamat Memesan</h1>
     <p>Rasakan kenikmatan dalam setiap suapan dengan rice bowl spesial kami!
@@ -49,14 +58,4 @@
 <?php if (isset($_SESSION['username'])): ?>
     <a href="index.php?page=riwayat.php" class="btn btn-info d-flex justify-content-center">Lihat Riwayat Transaksi</a>
 <?php endif; ?>
-<br>
-<section class="bg-light">
-    <br>
-    <div class="text-center">
-        <h3>Tentang Kami</h3>
-        <p>Jl. Nani Wartabone</p>
-        <p>089601585460</p>
-    </div>
-    <br>
-</section>
 <br>

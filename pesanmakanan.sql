@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2024 at 01:30 AM
+-- Generation Time: Dec 24, 2024 at 03:11 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -82,9 +82,9 @@ CREATE TABLE `tb_barang` (
 --
 
 INSERT INTO `tb_barang` (`id_brg`, `nama`, `harga`, `Deskripsi`, `gambar`) VALUES
-(1, 'Rice Bowl Mie Nuget', 10000, 'Makanan Paling enak sedunia', 'rb.jpeg'),
-(2, 'Rice Bowl Ayam Kecap', 10000, 'Makanan Paling enak', 'rbb.jpeg'),
-(3, 'Rice Bowl Mie Telur', 10000, 'Makanan Paling enak', 'rb.jpeg');
+(1, 'Rice Bowl Mie Nuget', 10000, 'Yang Atas Isi : Ketimun, Mie, Nuget', 'rb.jpeg'),
+(2, 'Rice Bowl Ayam Kecap', 10000, 'Isi : Nasi, Ayam, Ketimun, Sayur', 'rbb.jpeg'),
+(3, 'Rice Bowl Mie Telur', 10000, 'Yang Bawah Isi : Mie, Telur, Sosis, Sayur', 'rb.jpeg');
 
 -- --------------------------------------------------------
 
@@ -108,7 +108,9 @@ CREATE TABLE `transaksi` (
 
 INSERT INTO `transaksi` (`id_trx`, `barang`, `customer`, `jumlah`, `total`, `tanggal`, `status`) VALUES
 (20, 1, 7, 2, 20000, '2024-12-24 00:32:34', 'selesai'),
-(22, 1, 9, 1, 10000, '2024-12-24 01:08:32', 'selesai');
+(22, 1, 9, 1, 10000, '2024-12-24 01:08:32', 'selesai'),
+(23, 2, 7, 3, 30000, '2024-12-24 01:43:32', 'selesai'),
+(24, 3, 7, 2, 20000, '2024-12-24 03:04:54', 'diterima');
 
 --
 -- Indexes for dumped tables
@@ -166,7 +168,7 @@ ALTER TABLE `tb_barang`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_trx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_trx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables

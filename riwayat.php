@@ -26,6 +26,7 @@ if ($conn) {
 
 <div class="container mt-5">
     <h1 class="text-center text-success">Riwayat Transaksi</h1>
+    <p class="text-center">Informasi Pesanan Yang Baru Dibuat Berada diurutan Paling Atas</p>
     <div class="table-responsive mt-4">
         <table class="table table-bordered table-striped table-hover align-middle">
             <thead class="table-primary text-center">

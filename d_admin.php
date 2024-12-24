@@ -47,7 +47,7 @@ if (mysqli_num_rows($result) > 0):
 
     <div class="container mt-5">
         <h1 class="text-center text-success">Dashboard Admin - Daftar Pesanan</h1>
-
+        <p class="text-center">Selalu Periksa Halaman Admin Untuk Mengetahui Pesanan Baru Yang Akan Muncul Paling Atas</p>
         <!-- Tabel Pesanan -->
         <table class="table table-bordered mt-4">
             <thead class="table-primary">
