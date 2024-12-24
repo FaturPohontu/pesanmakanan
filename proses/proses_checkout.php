@@ -11,12 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $harga = $_POST['harga'];
     $jumlah = $_POST['jumlah'];
     $customer = $_SESSION['user_id'];
+    $status = 'pending';
     $total = $harga * $jumlah;
     $tanggal = date('Y-m-d H:i:s');
 
     if ($conn) {
-        $query = "INSERT INTO transaksi (barang, jumlah, total, tanggal, customer) 
-                  VALUES ('$id_barang', '$jumlah', '$total', '$tanggal', $customer)";
+        $query = "INSERT INTO transaksi (barang, jumlah, total, tanggal, customer, status) 
+                  VALUES ('$id_barang', '$jumlah', '$total', '$tanggal', $customer, $status)";
         $result = mysqli_query($conn, $query);
 
         if ($result) {

@@ -10,7 +10,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
 include "proses/koneksi.php";
 
 // Ambil semua pesanan dari database
-$query = "SELECT t.id_trx, b.nama AS barang, t.jumlah, t.total, t.tanggal, c.nama AS customer
+$query = "SELECT t.id_trx, b.nama AS barang, t.jumlah, t.total, t.tanggal, t.status, c.nama AS customer
           FROM transaksi t
           JOIN tb_barang b ON t.barang = b.id_brg
           JOIN db_cust c ON t.customer = c.id
@@ -48,11 +48,13 @@ if (mysqli_num_rows($result) > 0):
                         <td><?php echo $row['tanggal']; ?></td>
                         <td><?php echo $row['customer']; ?></td>
                         <td>
-                            <?php echo $row['status'] == 'pending' ? '<span class="text-warning">Pending</span>' : '<span class="text-success">Completed</span>'; ?>
+                            <?php echo $row['status'] == 'selesai' ? '<span class="text-warning">Pending</span>' : '<span class="text-success">Completed</span>'; ?>
                         </td>
                         <td>
                             <?php if ($row['status'] == 'pending'): ?>
                                 <a href="proses/proses_terima_pesanan.php?id=<?php echo $row['id_trx']; ?>" class="btn btn-success btn-sm">Terima</a>
+                            <?php elseif ($row['status'] == 'diterima'): ?>
+                                <a href="proses/proses_antar.php?id=<?php echo $row['id_trx']; ?>" class="btn btn-primary btn-sm">Antar</a>
                             <?php else: ?>
                                 <span class="text-muted">Selesai</span>
                             <?php endif; ?>
